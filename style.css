@@ -113,10 +113,20 @@ pre {
    Mobile Responsive
 -------------------- */
 @media screen and (max-width: 480px) {
-  .container {
-    padding: 15px;
-    margin: 10px;
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f5f6fa;
   }
+
+  .container {
+    width: 100vw;       /* Full width */
+    max-width: none;    /* Remove desktop size limit */
+    border-radius: 0;   /* Flush edges gives proper mobile card look */
+    padding: 25px 15px;
+    box-shadow: none;   /* Remove shadow on mobile (cleaner) */
+  }
+
 
   h2 {
     font-size: 20px;
