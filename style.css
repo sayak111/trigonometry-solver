@@ -14,13 +14,15 @@ body {
 }
 
 .container {
-  width: 100%;
-  max-width: 500px;
+  width: 95vw;           /* Fill most of the screen on mobile */
+  max-width: 500px;      /* Still look nice on desktop */
   background: #fff;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  margin: auto;
 }
+
 
 /* Headings */
 h2 {
