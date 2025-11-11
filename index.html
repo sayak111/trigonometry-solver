@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Trig Solver (Structured Input)</title>
+<style>
+/* Base styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 450px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f5f6fa;
+  color: #333;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  color: #2f3640;
+}
+
+/* Labels */
+label {
+  display: block;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  color: #40739e;
+}
+
+/* Input rows */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Inputs */
+input {
+  width: 80px;
+  padding: 8px 10px;
+  margin: 4px 0;
+  border: 1px solid #dcdde1;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.2s;
+}
+
+input:focus {
+  border-color: #40739e;
+  box-shadow: 0 0 6px rgba(64,115,158,0.3);
+}
+
+/* Button */
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: #40739e;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #2f3640;
+}
+
+/* Output */
+pre {
+  background: #ecf0f1;
+  padding: 16px;
+  margin-top: 20px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  font-family: 'Courier New', Courier, monospace;
+  color: #2f3640;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+}
+</style>
+</head>
+<body>
+
+<h2>Trigonometric Solution Solver</h2>
+
+<label>Base solution:</label>
+<div class="row">
+  <input id="baseNum" value="1"> /
+  <input id="baseDen" value="2"> π
+</div>
+
+<label>Period:</label>
+<div class="row">
+  <input id="periodNum" value="2"> π k
+</div>
+
+<label>Domain (in multiples of π):</label>
+<div class="row">
+  <input id="domMin" value="0"> π  to  
+  <input id="domMax" value="2"> π
+</div>
+
+<button id="solve">Solve</button>
+
+<pre id="out"></pre>
+
+<script>
+function solve() {
+  const baseNum = parseFloat(document.getElementById("baseNum").value);
+  const baseDen = parseFloat(document.getElementById("baseDen").value);
+  const periodNum = parseFloat(document.getElementById("periodNum").value);
+  const domMin = parseFloat(document.getElementById("domMin").value) * Math.PI;
+  const domMax = parseFloat(document.getElementById("domMax").value) * Math.PI;
+
+  const base = (baseNum / baseDen) * Math.PI;
+  const period = periodNum * Math.PI;
+
+  let results = [];
+
+  let kMin = Math.ceil((domMin - base) / period);
+  let kMax = Math.floor((domMax - base) / period);
+
+  for (let k = kMin; k <= kMax; k++) {
+    results.push(base + k * period);
+  }
+
+  results.sort((a,b)=>a-b);
+
+  const out = document.getElementById("out");
+  if(results.length === 0){
+    out.textContent = "No solutions in domain.";
+    return;
+  }
+
+  function asPi(x){
+    let q = x / Math.PI;
+    return q === Math.round(q) ? `${q}π` : `${q}π ≈ ${x.toFixed(6)}`;
+  }
+
+  out.textContent = results.map(x => "x = " + asPi(x)).join("\n");
+}
+
+document.getElementById("solve").onclick = solve;
+</script>
+
+</body>
+</html>
