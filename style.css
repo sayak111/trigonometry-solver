@@ -5,24 +5,35 @@
 /* Base styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  max-width: 450px;
-  margin: 20px auto;
+  margin: 20px;
   padding: 20px;
   background: #f5f6fa;
   color: #333;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
   border-radius: 12px;
+  padding: 20px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
+/* Headings */
 h2 {
   text-align: center;
   color: #2f3640;
+  margin-bottom: 20px;
 }
 
+/* Labels */
 label {
   display: block;
   font-weight: 600;
-  margin-top: 20px;
+  margin-top: 15px;
   margin-bottom: 6px;
   color: #40739e;
 }
@@ -30,24 +41,39 @@ label {
 /* Input rows */
 .row {
   display: flex;
-  align-items: center;
-  gap: 6px;
   flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+  align-items: center;
 }
 
-/* Inputs */
-input {
-  width: 80px;
-  padding: 8px 10px;
-  margin: 4px 0;
+/* Input + symbol wrapper */
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: nowrap;
+  background: #f0f0f0;
   border: 1px solid #dcdde1;
   border-radius: 6px;
-  font-size: 16px;
-  outline: none;
-  transition: 0.2s;
+  padding: 6px 8px;
 }
 
-input:focus {
+.input-group input {
+  border: none;
+  outline: none;
+  width: 50px;
+  font-size: 16px;
+  padding: 4px 6px;
+}
+
+.input-group span {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Focus effect */
+.input-group:focus-within {
   border-color: #40739e;
   box-shadow: 0 0 6px rgba(64,115,158,0.3);
 }
@@ -87,15 +113,22 @@ pre {
    Mobile Responsive
 -------------------- */
 @media screen and (max-width: 480px) {
-  body {
-    margin: 10px;
+  .container {
     padding: 15px;
+    margin: 10px;
   }
 
-  input {
-    width: 60px;
+  h2 {
+    font-size: 20px;
+  }
+
+  .input-group input {
+    width: 50px;
     font-size: 14px;
-    padding: 6px 8px;
+  }
+
+  .input-group span {
+    font-size: 14px;
   }
 
   .row {
